@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jefferson Villa | Executive & Administrative Professional</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #f3f4f6; background-color: #0f172a; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header { background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1e293b; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; }
+    .logo { font-size: 1.5rem; font-weight: 800; color: #38bdf8; text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: #94a3b8; font-weight: 500; transition: color 0.3s; font-size: 0.95rem; }
+    .nav-links a:hover { color: #38bdf8; }
+    .hero { padding: 100px 0 60px; text-align: left; }
+    .hero-content { max-width: 800px; }
+    .hero-tag { display: inline-block; background: rgba(56, 189, 248, 0.1); color: #38bdf8; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; color: #fff; }
+    .hero h1 span { background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #94a3b8; line-height: 1.8; }
+    .cta-group { display: flex; gap: 1rem; }
+    .btn { padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-primary { background: #38bdf8; color: #0f172a; }
+    .btn-primary:hover { background: #7dd3fc; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3); }
+    .btn-secondary { border: 1px solid #334155; color: #fff; }
+    .btn-secondary:hover { background: #1e293b; border-color: #38bdf8; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; padding: 60px 0; border-bottom: 1px solid #1e293b; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2.5rem; font-weight: 800; color: #38bdf8; margin-bottom: 0.5rem; }
+    .stat-label { color: #94a3b8; font-size: 0.95rem; }
+    .section { padding: 80px 0; }
+    .section-header { margin-bottom: 3rem; }
+    .section-title { font-size: 2.5rem; margin-bottom: 1rem; color: #fff; }
+    .section-subtitle { color: #94a3b8; font-size: 1.1rem; max-width: 700px; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .tool-category { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 2rem; transition: all 0.3s; }
+    .tool-category:hover { border-color: #38bdf8; transform: translateY(-5px); }
+    .tool-category h3 { color: #38bdf8; margin-bottom: 1rem; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+    .tool-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tool-tag { background: #0f172a; color: #94a3b8; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; border: 1px solid #1e293b; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+    .project-card { background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; transition: all 0.3s; display: flex; flex-direction: column; }
+    .project-card:hover { transform: translateY(-8px); border-color: #38bdf8; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .project-image-container { width: 100%; height: 220px; background: #ffffff; overflow: hidden; position: relative; border-bottom: 1px solid #334155; }
+    .project-screenshot { width: 100%; height: 100%; object-fit: cover; }
+    .project-content { padding: 2rem; flex-grow: 1; }
+    .project-card h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.3rem; }
+    .project-company { color: #38bdf8; font-size: 0.9rem; margin-bottom: 1rem; }
+    .project-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.7; }
+    .project-link { display: inline-block; margin-top: 1rem; color: #38bdf8; text-decoration: none; font-weight: 600; transition: all 0.3s; border: 1px solid #38bdf8; padding: 8px 16px; border-radius: 6px; }
+    .project-link:hover { background: #38bdf8; color: #0f172a; transform: translateX(5px); }
+    .project-metrics { padding: 1.5rem 2rem; display: flex; flex-wrap: wrap; gap: 1rem; background: rgba(15,23,42,0.3); }
+    .metric { background: #0f172a; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; color: #38bdf8; border: 1px solid #1e293b; }
+    .design-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .design-card { background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; flex-direction: column; }
+    .design-image { width: 100%; height: 260px; object-fit: cover; background: #020617; }
+    .design-content { padding: 1.5rem; }
+    .design-tagline { color: #94a3b8; font-size: 0.9rem; margin-top: 0.25rem; }
+    .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .achievement-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 1px solid #334155; border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; }
+    .achievement-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #38bdf8 0%, #818cf8 100%); }
+    .achievement-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .achievement-card h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .achievement-card p { color: #94a3b8; font-size: 0.9rem; }
+    .influencer-showcase { background: linear-gradient(135deg, rgba(56, 189, 248, 0.05) 0%, rgba(129, 140, 248, 0.05) 100%); border: 1px solid #334155; border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; }
+    .influencer-showcase h3 { color: #38bdf8; font-size: 1.5rem; margin-bottom: 1rem; }
+    .influencer-showcase p { color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .influencer-images { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .influencer-img-card { background: #1e293b; border-radius: 12px; overflow: hidden; border: 1px solid #334155; transition: all 0.3s; }
+    .influencer-img-card:hover { transform: translateY(-5px); border-color: #38bdf8; }
+    .influencer-img-card img { width: 100%; height: auto; display: block; }
+    .influencer-caption { padding: 1rem 1.5rem; background: #0f172a; }
+    .influencer-caption h4 { color: #fff; font-size: 1rem; margin-bottom: 0.25rem; }
+    .influencer-caption p { color: #94a3b8; font-size: 0.85rem; }
+    footer { border-top: 1px solid #1e293b; padding: 4rem 0; text-align: center; }
+    .footer-content { margin-bottom: 2rem; }
+    .footer-content h3 { color: #fff; margin-bottom: 1rem; font-size: 1.5rem; }
+    .footer-content p { color: #94a3b8; margin-bottom: 1.5rem; }
+    .contact-info { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .contact-item { color: #94a3b8; text-decoration: none; transition: color 0.3s; }
+    .contact-item:hover { color: #38bdf8; }
+    .footer-bottom { color: #64748b; font-size: 0.9rem; }
+    @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .nav-links { gap: 1rem; font-size: 0.85rem; } .stats { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">JV</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#ai-influencer">AI Influencer</a></li>
+          <li><a href="#design">Design Work</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tag">Executive & Administrative Professional</span>
+        <h1>Transforming Operations Into <span>Profitable Solutions</span></h1>
+        <p>I drive operational excellence through strategic automation, compliance management, and digital transformation—delivering measurable results including 30% cost reductions, 100% audit compliance, and streamlined workflows across international markets.</p>
+        <div class="cta-group">
+          <a href="#projects" class="btn btn-primary">View My Work →</a>
+          <a href="#ai-influencer" class="btn btn-secondary">View AI Influencer Samples</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container" style="display: contents;">
+      <div class="stat-item"><div class="stat-number">30%</div><div class="stat-label">Cost Reduction Achieved</div></div>
+      <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Audit Compliance Rate</div></div>
+      <div class="stat-item"><div class="stat-number">25%</div><div class="stat-label">Faster Hiring Process</div></div>
+      <div class="stat-item"><div class="stat-number">4</div><div class="stat-label">Countries Managed</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What I Bring to the Table</h2>
+        <p class="section-subtitle">A proven track record of streamlining operations, ensuring compliance, and leveraging cutting-edge technology to drive business growth and sustainability across diverse industries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tools" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Tools & Technologies</h2>
+        <p class="section-subtitle">Leveraging modern platforms and AI-powered solutions to optimize workflows and enhance digital transformation.</p>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-category"><h3>🤖 AI & Automation</h3><div class="tool-list"><span class="tool-tag">OpenAI</span><span class="tool-tag">HeyGen</span><span class="tool-tag">Gemini AI</span><span class="tool-tag">Kling</span><span class="tool-tag">MidJourney</span></div></div>
+        <div class="tool-category"><h3>💼 Business Platforms</h3><div class="tool-list"><span class="tool-tag">Zoho People</span><span class="tool-tag">Zoho CRM</span><span class="tool-tag">Zoho Books</span><span class="tool-tag">Zoho Projects</span><span class="tool-tag">Zoho Cliq</span></div></div>
+        <div class="tool-category"><h3>🛒 E-Commerce</h3><div class="tool-list"><span class="tool-tag">Lazada</span><span class="tool-tag">Shopee</span><span class="tool-tag">TikTok Shop</span></div></div>
+        <div class="tool-category"><h3>⚙️ Systems & ERP</h3><div class="tool-list"><span class="tool-tag">HRMS-E</span><span class="tool-tag">ERP Systems</span><span class="tool-tag">ATS (Custom)</span><span class="tool-tag">Slack</span></div></div>
+        <div class="tool-category"><h3>📊 Management</h3><div class="tool-list"><span class="tool-tag">Project Management</span><span class="tool-tag">Financial Planning</span><span class="tool-tag">Payroll Systems</span><span class="tool-tag">Asset Management</span></div></div>
+        <div class="tool-category"><h3>📋 Compliance & HR</h3><div class="tool-list"><span class="tool-tag">Regulatory Compliance</span><span class="tool-tag">Recruitment</span><span class="tool-tag">Training Programs</span><span class="tool-tag">Safety Standards</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Key Projects & Impact</h2>
+        <p class="section-subtitle">Real-world solutions that delivered measurable business outcomes.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <a href="https://careers.sgecentre.com/jobs/Careers" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+            <div class="project-image-container"><img src="https://cdn.abacus.ai/images/e8591fe5-7eb7-4c45-818b-4ddd5c65bf2a.png" alt="Custom ATS Development" class="project-screenshot" /></div>
+          </a>
+          <div class="project-content">
+            <h3>Custom ATS Development</h3>
+            <div class="project-company">SG Ecommerce Centre</div>
+            <p>Built and launched a customized Applicant Tracking System from the ground up, including a public-facing careers portal for candidates.</p>
+            <a href="https://careers.sgecentre.com/jobs/Careers" target="_blank" rel="noopener noreferrer" class="project-link">View Live Careers Portal →</a>
+          </div>
+          <div class="project-metrics"><span class="metric">25% Faster Hiring</span><span class="metric">40% Less Admin Work</span><span class="metric">100% Adoption Rate</span></div>
+        </div>
+
+        <div class="project-card">
+          <a href="https://hris.abacusai.app/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">
+            <div class="project-image-container"><img src="https://cdn.abacus.ai/images/d1cdb4c5-844f-4dcb-ba4d-d02c51951976.png" alt="HRIS Dashboard" class="project-screenshot" /></div>
+          </a>
+          <div class="project-content">
+            <h3>HRIS Implementation</h3>
+            <div class="project-company">Conversion Hub Pte. Ltd.</div>
+            <p>Implemented and administered a cloud-based HRIS, automating employee records, attendance, payroll, and leave management with clean dashboards and audit-ready data.</p>
+            <a href="https://hris.abacusai.app/" target="_blank" rel="noopener noreferrer" class="project-link">View Live HRIS Portal →</a>
+          </div>
+          <div class="project-metrics"><span class="metric">Zero Payroll Errors</span><span class="metric">100% Compliance</span><span class="metric">Real-time HR Analytics</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image-container"><img src="https://cdn.abacus.ai/images/31893abc-13ba-40e0-8f10-94e5acfa0125.png" alt="Digital Onboarding Platform" class="project-screenshot" /></div>
+          <div class="project-content">
+            <h3>Digital Onboarding Platform</h3>
+            <div class="project-company">SG Ecommerce Centre</div>
+            <p>Designed a full digital onboarding experience – from welcome screens and HR contact, to policy acknowledgements and video-based orientation modules. New hires complete everything online before day one.</p>
+          </div>
+          <div class="project-metrics"><span class="metric">20% Cost Savings</span><span class="metric">30-Day Productivity</span><span class="metric">90% Satisfaction</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>International Compliance</h3>
+            <div class="project-company">SG Ecommerce Centre</div>
+            <p>Led business compliance efforts across 4 countries, ensuring full adherence to international regulations and securing market access.</p>
+          </div>
+          <div class="project-metrics"><span class="metric">4 Countries</span><span class="metric">100% Compliance</span><span class="metric">Zero Violations</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>E-Commerce Optimization</h3>
+            <div class="project-company">SG Ecommerce Centre</div>
+            <p>Optimized product listings and strategies across Lazada, Shopee, and TikTok, driving significant revenue growth.</p>
+          </div>
+          <div class="project-metrics"><span class="metric">15% Sales Increase</span><span class="metric">3 Platforms</span><span class="metric">6 Months ROI</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>Asset Recovery Program</h3>
+            <div class="project-company">Wuhan FiberHome International</div>
+            <p>Converted damaged equipment into revenue through strategic asset management and recovery initiatives.</p>
+          </div>
+          <div class="project-metrics"><span class="metric">30% ROI</span><span class="metric">Zero Audit Findings</span><span class="metric">Regional Leadership</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ai-influencer">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">AI Influencer Samples</h2>
+        <p class="section-subtitle">AI-generated video content showcasing product marketing and brand storytelling capabilities.</p>
+      </div>
+
+      <div class="influencer-showcase">
+        <h3>🚀 HealthSmart Finds – Startup AI Influencer Channel</h3>
+        <p>Launched a TikTok channel leveraging AI-generated influencer content to promote health and wellness products. This startup venture is gaining traction with growing engagement and generating commission-based revenue through affiliate partnerships.</p>
+        <div class="influencer-images">
+          <div class="influencer-img-card">
+            <img src="https://cdn.abacus.ai/images/175bbc60-ad29-4331-912c-4798359811a6.png" alt="HealthSmart Finds TikTok Page" />
+            <div class="influencer-caption">
+              <h4>TikTok Channel Overview</h4>
+              <p>293 Following • 448 Followers • 576 Likes – Growing organic reach</p>
+            </div>
+          </div>
+          <div class="influencer-img-card">
+            <img src="https://cdn.abacus.ai/images/436d1f0d-2f90-481f-9d6e-38836037ac7f.png" alt="Pinned Videos Performance" />
+            <div class="influencer-caption">
+              <h4>Top Performing Content</h4>
+              <p>Pinned videos generating 3K+ views each – Commission revenue incoming</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-grid">
+        <div class="design-card">
+          <div style="position: relative; width: 100%; height: 260px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img src="https://cdn.abacus.ai/images/14b678f0-9ad4-4b07-873a-ce8978cd3f35.png" alt="Male Max Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0, 0, 0, 0.75); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">▶ Video</div>
+          </div>
+          <div class="design-content">
+            <h3>Male Max Product Video</h3>
+            <p class="design-tagline">AI-generated influencer content for male wellness product marketing. Video showcases energy and stamina supplement with natural ingredients.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <div style="position: relative; width: 100%; height: 260px; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+            <img src="https://cdn.abacus.ai/images/af48d44c-2817-4227-98db-ac8eae0f4ad9.png" alt="Turmeric Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0, 0, 0, 0.75); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">▶ Video</div>
+          </div>
+          <div class="design-content">
+            <h3>Turmeric Curcuma</h3>
+            <p class="design-tagline">Health supplement promotional video with AI presenter highlighting anti-inflammatory benefits.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="design">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Product & Visual Design Samples</h2>
+        <p class="section-subtitle">A selection of commercial-ready visuals showcasing product mockups, festive campaign art direction, and clean skincare aesthetics.</p>
+      </div>
+      <div class="design-grid">
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/a61a537c-98b9-4d80-a4bd-58582cf9a561.png" alt="Hair Tonic Packaging Design" class="design-image" />
+          <div class="design-content">
+            <h3>Hair Tonic Packaging</h3>
+            <p class="design-tagline">3D product mockup highlighting premium haircare positioning and clean front-of-pack hierarchy.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/e84697bb-223d-4ba8-a2b6-852219bc49bc.png" alt="Festive Skincare Campaign Visual 1" class="design-image" />
+          <div class="design-content">
+            <h3>Festive CNY Collection – Floral Set</h3>
+            <p class="design-tagline">Hero layout with depth, florals, and spotlight on full product system for seasonal promotion.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/a6f5669a-90ac-4d3f-bb04-669edb3a39fb.png" alt="Festive Skincare Campaign Visual 2" class="design-image" />
+          <div class="design-content">
+            <h3>Festive CNY Collection – Iconic Cleanser</h3>
+            <p class="design-tagline">Bold red and gold composition designed to anchor the campaign around a hero SKU.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/e914bf4d-fc15-4ac5-bfeb-700f1d0878cd.png" alt="Night Moisturizer Product Mockup" class="design-image" />
+          <div class="design-content">
+            <h3>Night Moisturizer Mockup</h3>
+            <p class="design-tagline">Minimalist studio-style render focusing on bottle finish, gradient label, and clean background.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/f8b5aab2-d441-48ac-ba92-6277dba15bdd.png" alt="Festive Model with Products" class="design-image" />
+          <div class="design-content">
+            <h3>Festive Model Key Visual</h3>
+            <p class="design-tagline">Brand storytelling through model shot, aligning wardrobe, background, and product colors.</p>
+          </div>
+        </div>
+        <div class="design-card">
+          <img src="https://cdn.abacus.ai/images/e2378239-80c4-47a3-bbaf-0c662d0f23bf.png" alt="Capsule Cream Product Visual" class="design-image" />
+          <div class="design-content">
+            <h3>C E Ferulic Capsule Cream</h3>
+            <p class="design-tagline">Clean, clinical-inspired composition emphasizing texture, capsules, and hand modeling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="achievements">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Achievements & Leadership</h2>
+        <p class="section-subtitle">Recognized accomplishments and strategic roles in business operations.</p>
+      </div>
+      <div class="achievements-grid">
+        <div class="achievement-card"><div class="achievement-icon">🏆</div><h3>Regional Leader - South Luzon</h3><p>Appointed as Regional Leader for tools and equipment management, overseeing reports, deliveries, and audits with full compliance.</p></div>
+        <div class="achievement-card"><div class="achievement-icon">💼</div><h3>Corporate Treasurer</h3><p>Served as Corporate Treasurer overseeing cash flow, financial planning, and investment strategies for sustained growth.</p></div>
+        <div class="achievement-card"><div class="achievement-icon">📦</div><h3>Logistics Excellence</h3><p>Achieved 98% on-time deliveries and negotiated contracts reducing logistics costs by 12%.</p></div>
+        <div class="achievement-card"><div class="achievement-icon">📈</div><h3>Operational Strategy</h3><p>Introduced company-wide policies resulting in a 20% boost in workflow efficiency and higher employee satisfaction.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <h3>Let's Work Together</h3>
+        <p>Ready to transform your operations and drive measurable results? Let's connect.</p>
+        <div class="contact-info">
+          <a href="mailto:jeffersonvilla2022@gmail.com" class="contact-item">📧 jeffersonvilla2022@gmail.com</a>
+          <a href="tel:09430703606" class="contact-item">📱 0943 070 3606</a>
+          <a href="#" class="contact-item">🌐 Portfolio</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Jefferson L. Villa. Driving operational excellence through innovation.</p></div>
+    </div>
+  </footer>
+</body>
+</html>
